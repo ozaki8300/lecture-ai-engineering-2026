@@ -88,3 +88,67 @@ AIE_MODEL=gemini-3.5-flash uv run python -m app.ask "LoRAとは何ですか？"
 ```
 
 無料枠には1分あたり・1日あたりのリクエスト上限があります。上限は [Gemini API のレート制限のページ](https://ai.google.dev/gemini-api/docs/rate-limits) で確認してください。
+
+## 第1回：対話と比較計測
+
+従来の単発実行と質問省略時の既定質問はそのまま利用できます。
+入力・出力トークン数とAPI呼び出し時間を表示します。usageがない場合は
+「取得不可」と表示し、0トークンとは区別します。
+
+```powershell
+uv run python -m app.ask "LoRAとは何ですか？"
+uv run python -m app.ask --chat
+uv run python -m app.ask "LoRAとは何ですか？" --chat
+```
+
+`--chat` はこのプロセス内でユーザー発言とモデル応答を保持します。
+`exit`、EOF、Ctrl+Cで終了します。失敗したターンは履歴に追加せず、続けて
+質問できます。履歴のファイル保存は行いません。
+
+以下はAPIキーを設定した後に実行する比較実験の例です。
+**この機能の実装時には実APIを使った実験を行っていません。**
+
+```powershell
+uv run python -m app.ask --compare --models gemini-3.5-flash-lite gemini-3.1-flash-lite --questions "LoRAとは何ですか？" "AIE2026の講座の宿題にある「3レベル」とは何ですか？" --max-requests 12 --output lectures/01/experiments/01_basic/lec01-comparison.jsonl
+```
+
+モデルと質問の各組合せを既定で3回ずつ実行します（`--trials` で変更可能）。
+各試行は履歴なしで、質問文字列をそのまま渡します。`--models` を省略すると
+`AIE_MODEL` の設定値、未設定なら既定モデルを使います。PowerShellでの切替例：
+
+```powershell
+$env:AIE_MODEL = "gemini-3.5-flash-lite"
+```
+
+比較結果はUTF-8のJSONL（1行1試行）です。`model`、`question`、`trial`、
+`elapsed_seconds`、`input_tokens`、`output_tokens`、`success`、`answer`、
+`error_type`、`error_code`、`question_id`（質問UTF-8のSHA-256）、`started_at`（UTC ISO 8601）を記録します。トークン数が取得できない場合は `null`。
+回答を行ごとに読んで基礎課題の差を比較でき、同じ記録を発展課題の集計にも使えます。
+応答時間は `perf_counter()` による同期生成呼び出しの経過時間で、SDK内部の待機を
+含み、クライアント作成・画面表示・ファイル書き込み時間は含みません。
+初回トークン到着時間やモデル単体の推論時間とは異なります。
+
+APIエラー・通信失敗も記録し、1件でも失敗すれば終了コード1を返します。
+429は記録後に比較・対話を即停止します。アプリ・SDKとも自動再試行しません。
+`--max-requests` はプロセス内の追加上限です。永続共有台帳 `lectures/01/experiments/04_analysis/day1_api_budget_v1/` により、再起動・別プロセスを含め比較12回、会話3回、合計15回を上限とします。単発CLIも比較枠を消費します。
+送信前に予約を新規保存し、失敗・中断でも返却しません。同時実行は待たず停止し、途中停止の未完了予約・台帳破損・429停止記録があれば以後の送信も拒否します。台帳の自動再作成・自動リセット・別台帳への切替は行いません。
+台帳の `preflight_confirmed.json` がない間はキー取得・クライアント作成前に停止します。Free Tier、両モデルのアクセス、残枠を確認した後にのみ、確認日時・制限値・実行間隔とともに `free_tier`、`model_access_confirmed`、`quotas_confirmed` がすべてtrueの新規確認ファイルを保存します。未確認のままtrueにしないでください。
+予約・結果・429停止記録は追記専用の新規ファイルです。未完了予約や429停止は自動解除しません。解除が必要な場合は原本を保持したまま別途レビューしてください。
+Day1 CLIの許可モデルは `gemini-3.5-flash-lite` と `gemini-3.1-flash-lite` に限定します。2.5 Flash-Liteへの変更は撤回されました。許可設定だけで現在の利用可否や無料枠の残量を保証するものではありません。
+本実験前に、使用キーが `Life Cards OAuth` に属すること、Free Tier、両モデルのアクセスと最新利用状況を確認します。リクエストは直列で15秒以上空け、未確認なら実行しません。上記CLI例自体には待機制御がないため、連続実験にそのまま使わないでください。
+実行前に利用プロジェクトがFree Tierであること、各モデルへのアクセスとRPM/TPM/RPD残枠をAI Studioで確認してください。無料枠対象のモデルでも有料Tierでは課金されます。
+`gemini-3.5-flash` は公式資料で3.6 Flashへ自動転送されるため比較には使いません。
+対話も `--chat --max-requests 3 --output lectures/01/experiments/02_chat/lec01-chat.jsonl` で保存できます。
+3.5 Flash-Liteではtemperatureは非推奨かつ無視されるため、今回の実験はモデル比較とします。
+失敗行も残るため、成功率と成功試行の時間を分けて集計してください。
+既存ログは上書きしません。新しいファイル名と既存の親フォルダを指定してください。
+中断時には書き込み済みの行を保持します。
+
+SDK例外の詳細文・クライアント設定・APIキーは出力しません。記録する質問と回答は、
+認識できるAPIキー形式とパスワード等の代入表現をマスクします。ただし任意の秘密文を
+完全に識別する機能ではないため、質問には秘密情報を含めないでください。
+`lectures/01/experiments/` は `.git/info/exclude` でローカル除外します。基礎のJSONLを発展でも再利用し、再呼び出しせず集計します。実験結果の考察と提出用の要約は
+実測後に `lectures/01/answer.md` に記入してください。
+
+Day1追加テストはSDKクライアントとキー取得を偽物に差し替え、実APIを呼びません。
+既存テストを含めた実行方法は `uv run --frozen --no-sync pytest -q` です。
