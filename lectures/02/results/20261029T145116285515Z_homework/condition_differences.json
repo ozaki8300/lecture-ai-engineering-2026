@@ -1,0 +1,14 @@
+{
+  "hardware": "RTX 3070 Ti / WSL Ubuntu instead of Colab T4",
+  "python": "3.12.3",
+  "torch": "2.11.0",
+  "output_paths": "Run ID directory; no Google Drive",
+  "overrides": {
+    "lora_r": 8
+  },
+  "quantization": false,
+  "dtype": "float32",
+  "amp": false,
+  "batch_size": 4,
+  "gradient_accumulation_steps": 2
+}

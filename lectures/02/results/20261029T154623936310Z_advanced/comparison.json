@@ -1,0 +1,62 @@
+{
+  "before": {
+    "n": 20,
+    "correct": 3,
+    "accuracy": 0.15,
+    "seconds": 148.42819273100002,
+    "by_kind": {
+      "named": {
+        "n": 8,
+        "correct": 0
+      },
+      "paraphrase": {
+        "n": 8,
+        "correct": 3
+      },
+      "absent": {
+        "n": 4,
+        "correct": 0
+      }
+    }
+  },
+  "after": {
+    "n": 20,
+    "correct": 9,
+    "accuracy": 0.45,
+    "seconds": 67.79447220100002,
+    "by_kind": {
+      "named": {
+        "n": 8,
+        "correct": 8
+      },
+      "paraphrase": {
+        "n": 8,
+        "correct": 0
+      },
+      "absent": {
+        "n": 4,
+        "correct": 1
+      }
+    }
+  },
+  "retrieval": {
+    "n": 20,
+    "correct": 18,
+    "accuracy": 0.9,
+    "seconds": 0.004573031000000061,
+    "by_kind": {
+      "named": {
+        "n": 8,
+        "correct": 8
+      },
+      "paraphrase": {
+        "n": 8,
+        "correct": 6
+      },
+      "absent": {
+        "n": 4,
+        "correct": 4
+      }
+    }
+  }
+}

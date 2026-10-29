@@ -1,0 +1,8 @@
+{
+  "train": 58,
+  "valid": 58,
+  "test": 20,
+  "max_tokens": 2,
+  "overlap": false,
+  "official_rows": 116
+}

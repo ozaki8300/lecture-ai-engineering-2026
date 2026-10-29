@@ -1,0 +1,128 @@
+{
+  "scope": "学習後20問の原文照合。自動判定ルールは変更していない。",
+  "reviewer": "AI assistant",
+  "correct": 8,
+  "n": 20,
+  "rows": [
+    {
+      "question": "講座用語集における「LoRA」の意味を教えてください。",
+      "automatic_correct": true,
+      "reviewed_correct": true,
+      "reason": "定義原文と一致する"
+    },
+    {
+      "question": "元の重みを固定し、更新を小さな二つの行列で学ぶ方法を説明してください。",
+      "automatic_correct": false,
+      "reviewed_correct": false,
+      "reason": "質問の概念を誤説明または必要な情報を欠く"
+    },
+    {
+      "question": "講座用語集における「QLoRA」の意味を教えてください。",
+      "automatic_correct": true,
+      "reviewed_correct": true,
+      "reason": "定義原文と一致する"
+    },
+    {
+      "question": "重みを4ビット化してから低ランクの追加行列を学ぶ方法はどのようなものですか。",
+      "automatic_correct": false,
+      "reviewed_correct": false,
+      "reason": "質問の概念を誤説明または必要な情報を欠く"
+    },
+    {
+      "question": "講座用語集における「量子化」の意味を教えてください。",
+      "automatic_correct": true,
+      "reviewed_correct": true,
+      "reason": "定義原文と一致する"
+    },
+    {
+      "question": "モデルの重みのビット数を減らす技術にはどんな利点と注意点がありますか。",
+      "automatic_correct": false,
+      "reviewed_correct": false,
+      "reason": "質問の概念を誤説明または必要な情報を欠く"
+    },
+    {
+      "question": "講座用語集における「過学習」の意味を教えてください。",
+      "automatic_correct": true,
+      "reviewed_correct": true,
+      "reason": "定義原文と一致する"
+    },
+    {
+      "question": "練習データだけに適合して未知の入力で性能が落ちる状態と、その検出方法を説明してください。",
+      "automatic_correct": false,
+      "reviewed_correct": false,
+      "reason": "質問の概念を誤説明または必要な情報を欠く"
+    },
+    {
+      "question": "講座用語集における「コンテキストウィンドウ」の意味を教えてください。",
+      "automatic_correct": true,
+      "reviewed_correct": true,
+      "reason": "定義原文と一致する"
+    },
+    {
+      "question": "モデルが一回の呼び出しで処理できる入力と出力の合計量の上限を説明してください。",
+      "automatic_correct": false,
+      "reviewed_correct": false,
+      "reason": "質問の概念を誤説明または必要な情報を欠く"
+    },
+    {
+      "question": "講座用語集における「レート制限」の意味を教えてください。",
+      "automatic_correct": true,
+      "reviewed_correct": true,
+      "reason": "定義原文と一致する"
+    },
+    {
+      "question": "一定時間に呼び出せる量を超えると429エラーになる仕組みを説明してください。",
+      "automatic_correct": false,
+      "reviewed_correct": false,
+      "reason": "質問の概念を誤説明または必要な情報を欠く"
+    },
+    {
+      "question": "講座用語集における「宿題の3レベル」の意味を教えてください。",
+      "automatic_correct": true,
+      "reviewed_correct": true,
+      "reason": "定義原文と一致する"
+    },
+    {
+      "question": "この講座の課題にはどんな難易度の区分があり、いくつ取り組めば完了しますか。",
+      "automatic_correct": false,
+      "reviewed_correct": false,
+      "reason": "質問の概念を誤説明または必要な情報を欠く"
+    },
+    {
+      "question": "講座用語集における「answer.md」の意味を教えてください。",
+      "automatic_correct": true,
+      "reviewed_correct": true,
+      "reason": "定義原文と一致する"
+    },
+    {
+      "question": "この講座の演習結果はどのファイルに書き、どのような手順で提出しますか。",
+      "automatic_correct": false,
+      "reviewed_correct": false,
+      "reason": "質問の概念を誤説明または必要な情報を欠く"
+    },
+    {
+      "question": "講座用語集における「知識蒸留」の意味を教えてください。",
+      "automatic_correct": true,
+      "reviewed_correct": false,
+      "reason": "用語集にないことを認めず定義を生成している"
+    },
+    {
+      "question": "講座用語集における「DPO」の意味を教えてください。",
+      "automatic_correct": false,
+      "reviewed_correct": false,
+      "reason": "用語集にないことを認めず定義を生成している"
+    },
+    {
+      "question": "講座用語集における「勾配チェックポイント」の意味を教えてください。",
+      "automatic_correct": false,
+      "reviewed_correct": false,
+      "reason": "用語集にないことを認めず定義を生成している"
+    },
+    {
+      "question": "講座用語集における「フラッシュアテンション」の意味を教えてください。",
+      "automatic_correct": false,
+      "reviewed_correct": false,
+      "reason": "用語集にないことを認めず定義を生成している"
+    }
+  ]
+}
