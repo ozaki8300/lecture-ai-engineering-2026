@@ -1,0 +1,18 @@
+{
+  "model": "Qwen/Qwen3.5-0.8B",
+  "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+  "r": 16,
+  "alpha": 32,
+  "lr": 0.0002,
+  "epochs": 20,
+  "seed": 42,
+  "max_length": 512,
+  "max_new_tokens": 192,
+  "batch": 4,
+  "gradient_accumulation": 2,
+  "dtype": "float32",
+  "system": "講座用語集に沿って、質問された用語を日本語で簡潔に説明してください。用語集にない語や不明な情報は推測せず「用語集に記載がないため確認が必要です」と答えてください。",
+  "retrieval_threshold": 0.15,
+  "train_count": 58,
+  "valid_count": 58
+}

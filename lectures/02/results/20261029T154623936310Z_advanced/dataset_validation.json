@@ -1,0 +1,10 @@
+{
+  "train": 58,
+  "valid": 58,
+  "test": 20,
+  "max_tokens": 166,
+  "overlap": false,
+  "official_rows": 116,
+  "min_tokens": 93,
+  "token_length_audit": "Recomputed from input_ids; original len(BatchEncoding)=2 counted keys. Training data and model were unchanged."
+}

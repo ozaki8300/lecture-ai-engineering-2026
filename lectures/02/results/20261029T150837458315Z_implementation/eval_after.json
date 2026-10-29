@@ -1,0 +1,201 @@
+{
+  "summary": {
+    "label": "after",
+    "n": 21,
+    "format_rate": 1.0,
+    "content_rate": 0.9523809523809523,
+    "both_rate": 0.9523809523809523,
+    "seconds": 33.5
+  },
+  "rows": [
+    {
+      "question": "業務利用が許可されたツールは？",
+      "raw": "{\"answer\": \"業務で利用できるのは社内AIポータルのみです。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "業務で使用してよいAIサービスの名称を教えてください",
+      "raw": "{\"answer\": \"業務で利用できるのは社内AIポータルのみです。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "仕事のために利用できるAIツールを答えてください",
+      "raw": "{\"answer\": \"業務で利用できるのは社内AIポータルのみです。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "AIへの入力が禁止されている情報を列挙してください",
+      "raw": "{\"answer\": \"個人情報・顧客機密・パスワードは入力禁止です。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "利用時に送信してはいけない情報は何ですか",
+      "raw": "{\"answer\": \"個人情報・顧客機密・パスワードは入力禁止です。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "AIに渡してはいけない情報の種類をすべて教えてください",
+      "raw": "{\"answer\": \"個人情報・顧客機密・パスワードは入力禁止です。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "AIで作った資料を社外に出すための条件は？",
+      "raw": "{\"answer\": \"社外へ提供するAI生成物は、担当者による事実確認と所属長の承認が必要です。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "AIが作った文章を顧客に送る前に誰が何をする必要がありますか",
+      "raw": "{\"answer\": \"社外へ提供するAI生成物は、担当者による事実確認と所属長の承認が必要です。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "社外へAI生成物を提供する際に必要な確認と承認を教えてください",
+      "raw": "{\"answer\": \"社外へ提供するAI生成物は、担当者による事実確認と所属長の承認が必要です。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "利用申請の窓口となるフォームは？",
+      "raw": "{\"answer\": \"社内申請フォーム「AI利用申請」から申請します。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "AIを使い始める申請の方法を教えてください",
+      "raw": "{\"answer\": \"社内申請フォーム「AI利用申請」から申請します。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "AI利用を申請する場所とフォーム名は何ですか",
+      "raw": "{\"answer\": \"社内申請フォーム「AI利用申請」から申請します。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "AIに関する相談先と受付時間は？",
+      "raw": "{\"answer\": \"問い合わせ先はAI運用窓口です。受付時間は平日10時〜17時です。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "AIの相談先の名称と受付曜日・時間帯を教えてください",
+      "raw": "{\"answer\": \"問い合わせ先はAI運用窓口です。受付時間は平日10時〜17時です。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "AIについて質問できる窓口とその営業時間は？",
+      "raw": "{\"answer\": \"問い合わせ先はAI運用窓口です。受付時間は平日10時〜17時です。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "AI利用の月額費用はいくらですか",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    },
+    {
+      "question": "申請から承認まで何営業日かかりますか",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    },
+    {
+      "question": "AIに送ったデータは何日間保管されますか",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    },
+    {
+      "question": "AIを利用するには研修の受講が必須ですか",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    },
+    {
+      "question": "AIサービスは一日何回まで使えますか",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    },
+    {
+      "question": "休日に緊急対応が必要な場合は誰へ連絡しますか",
+      "raw": "{\"answer\": \"問い合わせ先はAI運用窓口です。受付時間は平日10時〜17時です。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": true
+    }
+  ]
+}

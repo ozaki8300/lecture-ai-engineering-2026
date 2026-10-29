@@ -1,0 +1,12 @@
+{
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "versions": {
+    "torch": "2.11.0+cu130",
+    "transformers": "5.18.0",
+    "peft": "0.21.1",
+    "trl": "1.14.2",
+    "datasets": "5.1.0"
+  },
+  "cuda": "13.0",
+  "gpu": "NVIDIA GeForce RTX 3070 Ti"
+}

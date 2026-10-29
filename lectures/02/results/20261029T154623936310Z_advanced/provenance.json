@@ -1,0 +1,27 @@
+{
+  "run_id": "20261029T154623936310Z_advanced",
+  "file_sha256": {
+    "comparison.json": "5ddcb3d919a7a96e150cb8d7919f07de510843ba16e20b1684f9ab9c4c4b6563",
+    "config.json": "6a422e3c6eb58a74910d372bbe618d024937dbecd8d1f4062cbec210162e4120",
+    "dataset_validation.json": "92c01be65414b1cb64016c53efc037117bab4284c2c02c2693cca7c2b5a90d45",
+    "dataset_validation_initial.json": "c7bd27f4a47f6d9db5923d39e7bc7553f83dbb26a2e3e7b25a72767c34b6f1fa",
+    "environment.json": "3a74bfe6c7e5853dee1f2f8739cf72b3469088fa5d0e0d37e6a28128182f9b54",
+    "eval_before.json": "528c7bf80859f01a78f8fa066a10130433e70f382ac1cdc89fe51357dced4c24",
+    "eval_after.json": "201eb395df5f036cdcf29e85d98343a12c893fbd798aac49bccc91addda24964",
+    "eval_retrieval.json": "f55c0877f453347b1b91b1656e787d4c5130def7da5f5c870fb4f49324f70831",
+    "evaluation_spec.json": "546818ce1e1f96b24b601b4703759f1eb371943704a9f42f6c3b512133f9b294",
+    "glossary.json": "4b614a08a754bf6cf714f905f185ad5ef22e0957c7e64434a4b418edb68c2319",
+    "glossary_sft_official.jsonl": "af6ac820e0331d8d9af376e3b4cccff1b31f2f0f8bb462839752e3282bbd1081",
+    "make_sft_dataset.py": "d048bac47de883d9c97ab9f24e912f54e086c508d509820866d6483d2a74635e",
+    "train.jsonl": "bda3549c7151b2a0d08643f3621e93baaa817a56afcd583104fca34fb2daa75d",
+    "valid.jsonl": "58434bc95ef935e588ec4d26ffe3fc76acabbf16f90f24cea06e0235558caf0d",
+    "runner.py": "4a9b90c2e3cf48a3114209bdc9e046bb865268f5cd4e8f5bd8642fac61394f93",
+    "trainer_state.json": "0401ebddff4ccb2498ea50ff2f6c39f76a649f6203849bb6cf0b939b950b7aa2",
+    "status.json": "18afe952150f8bacbece02c5aeba7b5a68bc9de47386975616f616aa42e2f1eb",
+    "pip-freeze.txt": "762697ee33f3ec4b0fe91faf3e444b75e72f283360d0e27714a44ddbe0a4f54a",
+    "output_review.json": "c3b8b375d64189e8855a494a8a5aa34f1f45dd0e4f43b7cc3502b2b90ac8641e"
+  },
+  "glossary_unchanged": true,
+  "metrics_recounted": true,
+  "notes": "Executed runner is preserved byte-for-byte. dataset_validation corrected after run; original retained."
+}

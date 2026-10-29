@@ -1,0 +1,155 @@
+{
+  "業務利用が許可されたツールは？": {
+    "needs_review": false,
+    "must_include": [
+      "社内AIポータル"
+    ]
+  },
+  "業務で使用してよいAIサービスの名称を教えてください": {
+    "needs_review": false,
+    "must_include": [
+      "社内AIポータル"
+    ]
+  },
+  "仕事のために利用できるAIツールを答えてください": {
+    "needs_review": false,
+    "must_include": [
+      "社内AIポータル"
+    ]
+  },
+  "AIへの入力が禁止されている情報を列挙してください": {
+    "needs_review": false,
+    "must_include": [
+      "個人情報",
+      "顧客機密",
+      "パスワード"
+    ]
+  },
+  "利用時に送信してはいけない情報は何ですか": {
+    "needs_review": false,
+    "must_include": [
+      "個人情報",
+      "顧客機密",
+      "パスワード"
+    ]
+  },
+  "AIに渡してはいけない情報の種類をすべて教えてください": {
+    "needs_review": false,
+    "must_include": [
+      "個人情報",
+      "顧客機密",
+      "パスワード"
+    ]
+  },
+  "AIで作った資料を社外に出すための条件は？": {
+    "needs_review": false,
+    "must_include": [
+      "担当者",
+      "事実確認",
+      "所属長",
+      "承認"
+    ]
+  },
+  "AIが作った文章を顧客に送る前に誰が何をする必要がありますか": {
+    "needs_review": false,
+    "must_include": [
+      "担当者",
+      "事実確認",
+      "所属長",
+      "承認"
+    ]
+  },
+  "社外へAI生成物を提供する際に必要な確認と承認を教えてください": {
+    "needs_review": false,
+    "must_include": [
+      "担当者",
+      "事実確認",
+      "所属長",
+      "承認"
+    ]
+  },
+  "利用申請の窓口となるフォームは？": {
+    "needs_review": false,
+    "must_include": [
+      "社内申請フォーム",
+      "AI利用申請"
+    ]
+  },
+  "AIを使い始める申請の方法を教えてください": {
+    "needs_review": false,
+    "must_include": [
+      "社内申請フォーム",
+      "AI利用申請"
+    ]
+  },
+  "AI利用を申請する場所とフォーム名は何ですか": {
+    "needs_review": false,
+    "must_include": [
+      "社内申請フォーム",
+      "AI利用申請"
+    ]
+  },
+  "AIに関する相談先と受付時間は？": {
+    "needs_review": false,
+    "must_include": [
+      "AI運用窓口",
+      "平日",
+      "10時",
+      "17時"
+    ]
+  },
+  "AIの相談先の名称と受付曜日・時間帯を教えてください": {
+    "needs_review": false,
+    "must_include": [
+      "AI運用窓口",
+      "平日",
+      "10時",
+      "17時"
+    ]
+  },
+  "AIについて質問できる窓口とその営業時間は？": {
+    "needs_review": false,
+    "must_include": [
+      "AI運用窓口",
+      "平日",
+      "10時",
+      "17時"
+    ]
+  },
+  "AI利用の月額費用はいくらですか": {
+    "needs_review": true,
+    "must_include": [
+      "確認"
+    ]
+  },
+  "申請から承認まで何営業日かかりますか": {
+    "needs_review": true,
+    "must_include": [
+      "確認"
+    ]
+  },
+  "AIに送ったデータは何日間保管されますか": {
+    "needs_review": true,
+    "must_include": [
+      "確認"
+    ]
+  },
+  "AIを利用するには研修の受講が必須ですか": {
+    "needs_review": true,
+    "must_include": [
+      "確認"
+    ]
+  },
+  "AIサービスは一日何回まで使えますか": {
+    "needs_review": true,
+    "must_include": [
+      "確認"
+    ]
+  },
+  "休日に緊急対応が必要な場合は誰へ連絡しますか": {
+    "needs_review": true,
+    "must_include": [
+      "確認"
+    ]
+  }
+}
