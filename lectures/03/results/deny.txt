@@ -1,0 +1,9 @@
+[model] gemini-3.5-flash-lite
+[approval] save_learning_log: {"content": "この記録は拒否して保存しない", "topic": "Day3拒否検証"}
+この内容で実行しますか？ [y/N]: [approval] 拒否
+学習記録の保存は拒否されましたので、保存処理は行いませんでした。
+
+--- trace ---
+[tool call]   save_learning_log({'content': 'この記録は拒否して保存しない', 'topic': 'Day3拒否検証'})
+[tool return] save_learning_log -> The tool call was denied.…
+[usage] RunUsage(cost=Decimal('0.0004696'), details={'text_prompt_tokens': 1132}, input_text_tokens=1132, input_tokens=1132, output_tokens=52, requests=2)

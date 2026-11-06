@@ -5,6 +5,7 @@ TestModel は実際のLLMを呼ばない偽モデルで、登録されたツー�
 「ツールが登録され、呼ばれ、結果がモデルに戻るか」を確かめられる。
 """
 
+from pydantic_ai import DeferredToolRequests, DeferredToolResults
 from pydantic_ai.messages import ToolCallPart, ToolReturnPart
 from pydantic_ai.models.test import TestModel
 
@@ -21,6 +22,15 @@ def test_base_tools_are_registered_and_called():
     model = TestModel()
     with agent.override(model=model):
         result = agent.run_sync("LoRAとは？")
+        assert isinstance(result.output, DeferredToolRequests)
+        assert {call.tool_name for call in result.output.approvals} == {"save_learning_log"}
+        assert not result.output.calls
+        if isinstance(result.output, DeferredToolRequests):
+            decisions = DeferredToolResults(approvals={
+                call.tool_call_id: False for call in result.output.approvals
+            })
+            result = agent.run_sync(message_history=result.all_messages(),
+                                    deferred_tool_results=decisions)
 
     offered = {t.name for t in model.last_model_request_parameters.function_tools}
     assert BASE_TOOLS <= offered  # 演習でツールを足しても壊れないよう「含む」で判定
@@ -28,6 +38,10 @@ def test_base_tools_are_registered_and_called():
     called = {p.tool_name for p in _parts(result, ToolCallPart)}
     assert BASE_TOOLS <= called
     assert len(_parts(result, ToolReturnPart)) == len(_parts(result, ToolCallPart))
+    assert {p.tool_call_id for p in _parts(result, ToolReturnPart)} == {
+        p.tool_call_id for p in _parts(result, ToolCallPart)
+    }
+    assert isinstance(result.output, str)
     assert result.output
 
 

@@ -5,11 +5,15 @@
 """
 
 import json
+import random
+from datetime import datetime, timezone
+from uuid import uuid4
 from functools import cache
 from pathlib import Path
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 MAX_RESULTS = 3
+LEARNING_LOG_DIR = Path(__file__).resolve().parent.parent / "learning_log"
 
 
 @cache
@@ -77,3 +81,30 @@ def get_lecture_summary(lecture: int) -> str:
         available = sorted(p.stem for p in (DATA_DIR / "lectures").glob("*.md"))
         return f"第{lecture}回の要点はまだありません。用意されている回: {', '.join(available)}"
     return path.read_text(encoding="utf-8")
+
+
+def make_quiz(lecture: int) -> str:
+    """確認問題や復習クイズを求められたら使う。指定の回の用語から1問と正解を返す。"""
+    terms = [entry for entry in load_glossary() if entry["lecture"] == lecture]
+    if not terms:
+        return f"第{lecture}回の用語は見つかりませんでした。別の回を指定してください。"
+    entry = random.choice(terms)
+    return json.dumps({"question": f"「{entry['term']}」の意味は？",
+                       "answer": entry["definition"]}, ensure_ascii=False)
+
+
+def save_learning_log(topic: str, content: str) -> str:
+    """利用者が学習記録の保存を頼んだときに使う。承認後にlearning_log/へ新規保存する。
+
+    topic は学習テーマ、content は保存する本文。APIキーなどの秘密情報を含めないこと。
+    """
+    if not topic.strip() or not content.strip():
+        return "テーマと本文を空にせず指定してください。保存しませんでした。"
+    now = datetime.now(timezone.utc)
+    filename = f"{now:%Y%m%dT%H%M%S%fZ}_{uuid4().hex}.json"
+    record = {"created_at": now.isoformat(), "topic": topic, "content": content}
+    LEARNING_LOG_DIR.mkdir(parents=True, exist_ok=True)
+    with (LEARNING_LOG_DIR / filename).open("x", encoding="utf-8") as handle:
+        json.dump(record, handle, ensure_ascii=False, indent=2)
+        handle.write("\n")
+    return f"学習記録を保存しました: learning_log/{filename}"
