@@ -12,3 +12,23 @@ learning_log/
 
 # macOS
 .DS_Store
+
+# Day4: keep local execution logs and recovery copies out of submissions.
+lectures/04/implementation_run/*
+!lectures/04/implementation_run/my_cases.before_generation.jsonl
+!lectures/04/implementation_run/glossary.58.before.json
+!lectures/04/implementation_run/glossary_hashes.json
+!lectures/04/implementation_run/glossary_diff.json
+!lectures/04/implementation_run/resumable_checkpoint.json
+!lectures/04/implementation_run/final_submission_validation.json
+!lectures/04/implementation_run/human_labels_adoption.json
+!lectures/04/implementation_run/standard_instructor_comparison.json
+lectures/04/baseline_run/*
+!lectures/04/baseline_run/labels.before.jsonl
+!lectures/04/baseline_run/rubric.before.md
+!lectures/04/baseline_run/judge_result.before_rubric_change.json
+!lectures/04/baseline_run/report.txt
+lectures/04/step3_run/*
+!lectures/04/step3_run/rubric.after.md
+!lectures/04/step3_run/judge_result.after.json
+!lectures/04/step3_run/report.txt

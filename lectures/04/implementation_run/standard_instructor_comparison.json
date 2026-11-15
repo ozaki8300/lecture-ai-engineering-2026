@@ -1,0 +1,13 @@
+{
+  "agree": 49,
+  "total": 50,
+  "differences": [
+    {
+      "id": "06",
+      "criterion": "hint",
+      "human": "pass",
+      "instructor": "fail"
+    }
+  ],
+  "api_calls": 0
+}

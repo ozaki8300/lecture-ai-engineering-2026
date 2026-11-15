@@ -1,0 +1,18 @@
+﻿{
+    "human_label_records":  10,
+    "human_criteria":  50,
+    "human_backup_and_formal_hash_match":  true,
+    "standard_labels_restored":  true,
+    "standard_instructor_agreement":  "49/50",
+    "implementation_human_agreement":  "46/50",
+    "implementation_overall_agreement":  "9/10",
+    "coverage":  "10/10",
+    "judge_result_preserved_sha256":  "c2649a1d9c1309c5945bc3edd1243707b244135ef63bbdbbf18d7069d5eca31c",
+    "day1_day3_and_official_code_protected":  true,
+    "rubrics_preserved":  true,
+    "api_key_literal_scan":  "PASS",
+    "api_calls":  0,
+    "pytest":  "89 passed in 8.35s",
+    "commit_push_pr":  "NOT RUN",
+    "submission_ready":  true
+}
