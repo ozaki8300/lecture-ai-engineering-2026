@@ -1,0 +1,194 @@
+[
+  {
+    "id": "adk",
+    "field": "definition",
+    "before": "Googleが公開しているオープンソースのエージェント開発フレームワーク。Geminiとの統合が深く、adk web でツール呼び出しの流れを画面で確認できる。2.0で1.x系から破壊的変更が入っている。本講座では宿題の発展レベルで扱う。",
+    "after": "Googleが公開しているオープンソースのエージェント開発フレームワーク。Geminiとの統合が深い。2.0で1.x系から大きな変更が入っている。本講座では第3回の宿題の発展レベルで扱う。"
+  },
+  {
+    "id": "mcp",
+    "field": "definition",
+    "before": "AIアプリと外部のツールやデータソースをつなぐためのオープンな標準プロトコル。MCPサーバーとして公開したツールは、対応する様々なエージェントやエディタ（MCPクライアント）から共通の方法で使える。第5回で、用語集の検索をMCPサーバーにして体験する。",
+    "after": "AIアプリと外部のツールやデータソースをつなぐためのオープンな標準プロトコル。MCPサーバーとして公開したツールは、対応する様々なエージェントやエディタ（MCPクライアント）から共通の方法で使える。第6回で、用語集の検索をMCPサーバーにして体験する。"
+  },
+  {
+    "id": "external-tool",
+    "field": "lecture",
+    "before": 5,
+    "after": 6
+  },
+  {
+    "id": "mcp-server",
+    "field": "lecture",
+    "before": 5,
+    "after": 6
+  },
+  {
+    "id": "mcp-client",
+    "field": "lecture",
+    "before": 5,
+    "after": 6
+  },
+  {
+    "id": "mcp-transport",
+    "field": "lecture",
+    "before": 5,
+    "after": 6
+  },
+  {
+    "id": "mcp-config",
+    "field": "lecture",
+    "before": 5,
+    "after": 6
+  },
+  {
+    "id": "tool-namespace",
+    "field": "lecture",
+    "before": 5,
+    "after": 6
+  },
+  {
+    "id": "fetch-server",
+    "field": "lecture",
+    "before": 5,
+    "after": 6
+  },
+  {
+    "id": "agreement-rate",
+    "added": {
+      "id": "agreement-rate",
+      "term": "一致率",
+      "aliases": [
+        "agreement rate",
+        "人との一致",
+        "inter-rater agreement"
+      ],
+      "lecture": 4,
+      "category": "評価",
+      "definition": "2つの判定（人とLLM、人と人）が同じ結果になった件数の割合。採点器を信じてよいかの根拠になる。主観的な基準は人同士でも割れるので、一致率の天井は100%ではない。",
+      "related": [
+        "llm-as-a-judge",
+        "rubric"
+      ]
+    }
+  },
+  {
+    "id": "edge-case",
+    "added": {
+      "id": "edge-case",
+      "term": "エッジケース",
+      "aliases": [
+        "edge case",
+        "境界ケース"
+      ],
+      "lecture": 4,
+      "category": "評価",
+      "definition": "入力の境界や想定外の形。空の入力、極端に長い入力、表記ゆれ、範囲外の質問、指示を上書きしようとする要求など。評価セットに意図的に含め、採点器やエージェントがそこでどうふるまうかを確かめる。",
+      "related": [
+        "evaluation-dataset"
+      ]
+    }
+  },
+  {
+    "id": "evaluation-dataset",
+    "added": {
+      "id": "evaluation-dataset",
+      "term": "評価セット",
+      "aliases": [
+        "評価データセット",
+        "eval set",
+        "テストセット"
+      ],
+      "lecture": 4,
+      "category": "評価",
+      "definition": "評価のために用意した「入力と、期待する出力または合格の条件」の集まり。正常系だけでなく、壊れやすい入力（エッジケース）を意図的に含めて、どこで失敗するかを見る。本講座の第4回演習では、講師が用意した10件に受講生がラベルを付ける。",
+      "related": [
+        "edge-case",
+        "rubric",
+        "llm-as-a-judge"
+      ]
+    }
+  },
+  {
+    "id": "llm-as-a-judge",
+    "added": {
+      "id": "llm-as-a-judge",
+      "term": "LLM-as-a-Judge",
+      "aliases": [
+        "LLM採点",
+        "LLM judge",
+        "自動採点"
+      ],
+      "lecture": 4,
+      "category": "評価",
+      "definition": "採点の基準（ルーブリック）を与えたLLMに、別のモデルの出力を判定させる方法。大量の出力を安く速く採点できるが、採点役の癖（冗長な回答を好む、順序に影響されるなど）が結果に混ざる。人の判定との一致率で確かめてから使う。",
+      "related": [
+        "rubric",
+        "agreement-rate",
+        "position-bias",
+        "structured-output"
+      ]
+    }
+  },
+  {
+    "id": "needs-review",
+    "added": {
+      "id": "needs-review",
+      "term": "要確認",
+      "aliases": [
+        "unsure",
+        "人手確認",
+        "要レビュー"
+      ],
+      "lecture": 4,
+      "category": "評価",
+      "definition": "自動判定では決められない項目（LLMが unsure と答えた項目）を、人が見る列に回すこと。一致率の計算からは外す。要確認が出た項目は、基準に書いていなかったことの印なので、方針を決めて基準に書き足す。",
+      "related": [
+        "rubric",
+        "llm-as-a-judge"
+      ]
+    }
+  },
+  {
+    "id": "position-bias",
+    "added": {
+      "id": "position-bias",
+      "term": "位置バイアス",
+      "aliases": [
+        "position bias",
+        "順序バイアス"
+      ],
+      "lecture": 4,
+      "category": "評価",
+      "definition": "2つの回答を並べて「どちらが良いか」を判定させるとき、内容ではなく提示された順序に判定が引きずられる採点器の癖。順序を入れ替えて同じ結果になるかで確かめる。長い回答を好む冗長性バイアスと並ぶ代表的な癖。",
+      "related": [
+        "llm-as-a-judge"
+      ]
+    }
+  },
+  {
+    "id": "rubric",
+    "added": {
+      "id": "rubric",
+      "term": "ルーブリック",
+      "aliases": [
+        "rubric",
+        "評価基準",
+        "採点基準"
+      ],
+      "lecture": 4,
+      "category": "評価",
+      "definition": "合格・不合格を判定するための基準を、項目ごとに文章で定めたもの。人にもLLMにも同じ基準を渡して採点させる。基準に書いていないことは人もLLMも決められないので、判断が分かれた項目は方針を決めて基準に書き足す。本講座では data/eval/rubric.md がこれにあたる。",
+      "related": [
+        "evaluation-dataset",
+        "llm-as-a-judge",
+        "needs-review"
+      ]
+    }
+  },
+  {
+    "field": "note",
+    "before": "AIE2026 第1〜3回・第5回の用語集（たたき台）。講義スライド確定後に内容を差し替える。",
+    "after": "AIE2026 第1〜4回・第6回の用語集（たたき台）。講義スライド確定後に内容を差し替える。"
+  }
+]

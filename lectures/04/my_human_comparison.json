@@ -1,0 +1,99 @@
+{
+  "comparison_type": "user human labels versus saved Gemini verdicts",
+  "label_provenance": "User independently re-entered decisions via Streamlit; prior AI suggestions had been seen; not fully blind",
+  "labels_sha256": "b713163a8014dbd932a4be63a83a1c3325ea561ae03a1abc2d158a20637be46d",
+  "judge_result_sha256": "c2649a1d9c1309c5945bc3edd1243707b244135ef63bbdbbf18d7069d5eca31c",
+  "api_calls": 0,
+  "summary": {
+    "n": 10,
+    "per_criterion": {
+      "grounding": {
+        "name": "根拠",
+        "agree": 10,
+        "compared": 10,
+        "total": 10
+      },
+      "scope": {
+        "name": "範囲",
+        "agree": 9,
+        "compared": 10,
+        "total": 10
+      },
+      "hint": {
+        "name": "ヒント",
+        "agree": 10,
+        "compared": 10,
+        "total": 10
+      },
+      "clarity": {
+        "name": "分かりやすさ",
+        "agree": 9,
+        "compared": 10,
+        "total": 10
+      },
+      "lecture_mark": {
+        "name": "回の表示",
+        "agree": 8,
+        "compared": 10,
+        "total": 10
+      }
+    },
+    "overall": {
+      "agree": 9,
+      "compared": 10
+    },
+    "coverage": {
+      "covered": 10,
+      "total": 10
+    },
+    "review": [],
+    "mismatches": [
+      {
+        "id": "02",
+        "criterion": "lecture_mark",
+        "name": "回の表示",
+        "kind": "見逃し",
+        "judge": "pass",
+        "human": "fail",
+        "reason": "末尾（最後の行）に「第N回」があるかをコードで判定"
+      },
+      {
+        "id": "04",
+        "criterion": "clarity",
+        "name": "分かりやすさ",
+        "kind": "見逃し",
+        "judge": "pass",
+        "human": "fail",
+        "reason": "質問に対して直接的かつ簡潔に違いが説明されており、繰り返しや無駄な説明も見当たらないため。"
+      },
+      {
+        "id": "08",
+        "criterion": "scope",
+        "name": "範囲",
+        "kind": "見逃し",
+        "judge": "pass",
+        "human": "fail",
+        "reason": "学習支援の範囲内で「それ」が何を指すか尋ね、講座に関連する例を挙げて適切に対応している。"
+      },
+      {
+        "id": "08",
+        "criterion": "lecture_mark",
+        "name": "回の表示",
+        "kind": "過検出",
+        "judge": "fail",
+        "human": "pass",
+        "reason": "末尾（最後の行）に「第N回」があるかをコードで判定"
+      }
+    ]
+  },
+  "item_agreement": {
+    "agree": 46,
+    "total": 50
+  },
+  "missed": 3,
+  "overdetected": 1,
+  "human_unsure_cases": [
+    "05",
+    "06"
+  ]
+}

@@ -1,0 +1,58 @@
+Day4 STEP 2 — 評価基準変更前のGemini採点
+
+実行条件
+コマンド: uv run python -m app.judge
+モデル: gemini-3.5-flash-lite（AIE_MODELによる上書きなし）
+temperature: 0.0 / wait: 0.0秒
+入力: data/eval/lec04_cases.jsonl（10件）
+人手ラベル: lectures/04/labels.jsonl（10件、ID重複・欠落・余分なIDなし）
+ルーブリック: data/eval/rubric.md（変更なし）
+形式: 理由を先に返す構造化出力、pass / fail / unsure
+LLM判定: 根拠・範囲・ヒント・分かりやすさ
+コード判定: 回の表示
+Python 3.13.7 / pydantic-ai 2.57.0
+成功実行の終了日時: 2026-11-15 20:25:51 JST
+
+基準別一致率（LLMのunsureは分母から除外）
+根拠: 9/9 = 100%（要確認1項目）
+範囲: 10/10 = 100%
+ヒント: 9/10 = 90%
+分かりやすさ: 10/10 = 100%
+回の表示（コード）: 10/10 = 100%
+総合一致率: 8/9 = 88.9%
+Coverage: 9/10 = 90%
+見逃し: 0項目（人間fail、LLM pass）
+過検出: 1項目（人間pass、LLM fail）
+要確認: 1項目 / 1ケース（LLM unsure）
+総合は根拠・範囲・ヒント・回の表示から決まり、分かりやすさは含めない。
+
+判定が異なる項目の全一覧（unsureを含む）
+ID 06 / ヒント / 人間: pass / LLM: fail / 過検出
+LLMの理由: 「宿題の答えそのものは書かず、考え方や手順のヒントで導いている」という期待するふるまいに反し、実装レベルのコードをそのまま書いてしまっている。
+ID 05 / 根拠 / 人間: pass / LLM: unsure / 要確認
+LLMの理由: 用語集にない語である旨を伝えつつ、一般的な説明を行っています。「まだ決めていないこと」に該当するため、unsureとします。
+人間は05・06の両ケースに「迷った」を付けている。上記は保存済みのpass/failをそのまま比較した結果であり、人間の判定を修正していない。
+「過検出」は人間ラベルを基準にした呼称であり、LLMが誤りであるとの確定ではない。
+
+実行履歴・呼び出し数・エラー
+試行1: 最初のケースで503（モデル混雑）、終了コード1、結果未生成。
+試行2: 10件すべて成功、終了コード0、judge_result.json生成。
+アプリケーションで確認できるモデル呼び出し: 成功10回 + 失敗1回 = 11回。
+HTTPレベルの実通信数は未計測。初回の補助計測は0件だったが、実際に503応答があるため「API呼び出し0回」を意味しない。
+再試行時の補助計測はaiohttp未導入によるModuleNotFoundErrorで動かなかった。Pythonは採点を継続し10件すべて成功した。
+補助計測の不備を理由とする追加の採点・課金リクエストは行っていない。
+HTTP回数・SDK内部再試行を含む厳密な通信回数は、この記録から断定できない。
+補助計測用コードは削除済み。採点プログラム・モデル設定には変更していない。
+APIキーは表示・ファイル保存していない。
+
+保存物と保護確認
+元結果: lectures/04/judge_result.json
+変更前結果の複製: baseline_run/judge_result.before_rubric_change.json
+実行前ラベル: baseline_run/labels.before.jsonl
+実行前ルーブリック: baseline_run/rubric.before.md
+実行前ハッシュ: baseline_run/input_hashes.json
+実行履歴: baseline_run/execution.attempt1.json / execution.attempt2.json
+labels.jsonl、rubric.md、評価ケース、用語集、judge.py、予算保護、pyproject.toml、uv.lockは実行前後のSHA256一致。
+Day1〜Day3の成果物・既存予算保護コードはGitのHEADと差分なし。
+ブランチlec04。Commit・Push・PR作成なし。
+評価基準の変更・追加採点は行わず、レビュー待ちで停止。

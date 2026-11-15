@@ -1,0 +1,15 @@
+﻿{
+    "completed_at_utc":  "2026-11-15T13:20:23.8440942Z",
+    "human_labels_count":  10,
+    "human_criteria_count":  50,
+    "human_labels_source":  "User-confirmed independent evaluation originally saved in lectures/04/labels.jsonl",
+    "preserved_path":  "lectures/04/my_labels_independent.jsonl",
+    "preserved_sha256":  "B713163A8014DBD932A4BE63A83A1C3325EA561AE03A1ABC2D158A20637BE46D",
+    "formal_path":  "lectures/04/my_labels.jsonl",
+    "formal_sha256":  "B713163A8014DBD932A4BE63A83A1C3325EA561AE03A1ABC2D158A20637BE46D",
+    "prior_formal_backup":  null,
+    "standard_restored_from":  "lectures/04/baseline_run/labels.before.jsonl",
+    "standard_sha256":  "20FC87C2B5606242A3D965B84BD49B9604030EE098EF2F2FACD831AB9E311607",
+    "ai_labels_used":  false,
+    "api_calls":  0
+}

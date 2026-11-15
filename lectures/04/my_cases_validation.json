@@ -1,0 +1,40 @@
+{
+  "json_syntax": "PASS",
+  "schema": "PASS",
+  "count": 10,
+  "unique_ids": "PASS",
+  "empty_answers": "NO: all 10 real answers now saved",
+  "normal_count": 5,
+  "edge_count": 5,
+  "missing_local_references": [],
+  "missing_official_tag_references": [],
+  "local_reference_validation": "PASS",
+  "expected_behaviors": "PASS: nonempty and case 04 references resolve; reviewed content retained unchanged",
+  "glossary_entries": 65,
+  "api_calls": null,
+  "answers_generated": 10,
+  "human_labels_created": 0,
+  "generation_status": "COMPLETE",
+  "pytest": {
+    "before_path_fix": {
+      "passed": 78,
+      "failed": 2
+    },
+    "after_path_fix": {
+      "passed": 80,
+      "failed": 0,
+      "duration_seconds": 8.07
+    }
+  },
+  "answers_saved": 10,
+  "completed_agent_runs": 6,
+  "failed_agent_runs": 1,
+  "http_api_request_count": null,
+  "api_call_count_note": "See checkpoint metadata for successful generation model requests; historical failed usage unknown",
+  "model": "gemini-3.5-flash-lite",
+  "retries_after_429": 0,
+  "latest_tests": {
+    "passed": 89,
+    "failed": 0
+  }
+}
