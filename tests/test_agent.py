@@ -1,10 +1,11 @@
-import json
 """エージェントの配線テスト。
 
 TestModel は実際のLLMを呼ばない偽モデルで、登録されたツールを全部呼んでから
 ダミーの回答を返す。APIキーも利用枠も使わずに、
 「ツールが登録され、呼ばれ、結果がモデルに戻るか」を確かめられる。
 """
+
+import json
 
 from pydantic_ai import DeferredToolRequests, DeferredToolResults
 from pydantic_ai.messages import ToolCallPart, ToolReturnPart
@@ -19,7 +20,10 @@ def _parts(result, kind):
     return [p for m in result.all_messages() for p in m.parts if isinstance(p, kind)]
 
 
-def test_base_tools_are_registered_and_called(monkeypatch):
+def test_base_tools_are_registered_and_called(monkeypatch, tmp_path):
+    from app import tools
+    directory = tmp_path / "learning_log"
+    monkeypatch.setattr(tools, "LEARNING_LOG_DIR", directory)
     monkeypatch.setattr("app.retrieval.search", lambda *args, **kwargs: [])
     model = TestModel()
     with agent.override(model=model):
@@ -45,6 +49,7 @@ def test_base_tools_are_registered_and_called(monkeypatch):
     }
     assert isinstance(result.output, str)
     assert result.output
+    assert not directory.exists()
 
 
 def test_material_result_reaches_the_model(monkeypatch):

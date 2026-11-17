@@ -21,7 +21,7 @@ from pathlib import Path
 from contextlib import nullcontext
 from time import perf_counter
 
-from pydantic_ai import Agent, DeferredToolRequests, DeferredToolResults
+from pydantic_ai import Agent, DeferredToolRequests, DeferredToolResults, Tool
 from pydantic_ai.exceptions import ModelHTTPError
 from fastmcp import Client
 from pydantic_ai.mcp import MCPToolset, StdioTransport
@@ -29,6 +29,7 @@ from pydantic_ai.messages import ToolCallPart, ToolReturnPart
 from pydantic_ai.models.google import GoogleModel
 from pydantic_ai.models.test import TestModel
 from pydantic_ai.providers.google import GoogleProvider
+from google.genai import types
 
 from app import tools
 from app.retrieval import run_full_context
@@ -119,12 +120,14 @@ MCP_INSTRUCTIONS = '''講座の学習支援エージェントです。公開さ�
 
 
 def build_mcp_agent(config_path: Path = MCP_CONFIG) -> Agent:
-    """第5回: 関数を直接登録する代わりに、MCP サーバーが公開するツールを使うエージェント。INSTRUCTIONS は同じ。"""
+    """MCPサーバーが公開するツールを、独立した指示で使うエージェント。"""
     return Agent(instructions=MCP_INSTRUCTIONS, toolsets=load_mcp_servers(config_path))
 
 
 def build_model() -> GoogleModel:
-    return GoogleModel(MODEL, provider=GoogleProvider(api_key=get_api_key()))
+    return GoogleModel(MODEL, provider=GoogleProvider(
+        api_key=get_api_key(), retry_options=types.HttpRetryOptions(attempts=1),
+    ))
 
 
 def print_tools(target: Agent) -> None:
@@ -207,6 +210,7 @@ def main() -> None:
     parser.add_argument("question", nargs="?")
     parser.add_argument("--trace", action="store_true", help="ツール呼び出しを表示する")
     modes = parser.add_mutually_exclusive_group()
+    modes.add_argument("--neighbors", action="store_true", help="通常検索に同じ資料の前後1ページの本文を付加する")
     modes.add_argument("--mcp", action="store_true", help="第5回: ツールを MCP サーバー（app/mcp_servers.json）から受け取る")
     modes.add_argument("--graph", action="store_true", help="検索結果からグラフをたどり、候補ページを読んで答える")
     modes.add_argument("--tree", action="store_true", help="目次をたどり、必要なページを読んで答える")
@@ -216,7 +220,13 @@ def main() -> None:
 
     target = build_mcp_agent() if args.mcp else agent
     mode = nullcontext()
-    if args.tree:
+    if args.neighbors:
+        mode = target.override(tools=[
+            tools.search_glossary, tools.get_lecture_summary,
+            Tool(tools.search_materials_with_neighbors, name="search_materials"),
+            tools.make_quiz, Tool(tools.save_learning_log, requires_approval=True),
+        ])
+    elif args.tree:
         mode = target.override(instructions=TREE_INSTRUCTIONS, tools=[tools.browse_tree])
     elif args.graph:
         mode = target.override(instructions=GRAPH_INSTRUCTIONS, tools=[tools.search_graph])

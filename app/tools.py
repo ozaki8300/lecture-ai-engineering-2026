@@ -126,6 +126,28 @@ def search_materials(query: str) -> str:
     except (ValueError, FileNotFoundError, sqlite3.Error) as e:
         return json.dumps({"error": str(e), "results": []}, ensure_ascii=False)
     except APIError as e:
+        if e.code == 429:
+            from pydantic_ai.exceptions import ModelHTTPError
+            from app.config import EMBEDDING_MODEL
+            raise ModelHTTPError(429, EMBEDDING_MODEL, api_error_message(429)) from e
+        return json.dumps({"error": api_error_message(e.code), "results": []}, ensure_ascii=False)
+
+
+def search_materials_with_neighbors(query: str) -> str:
+    """第1〜3回の本講義資料を検索し、関連ページと同じ資料の前後1ページの本文・引用情報を返す。"""
+    import sqlite3
+    from google.genai.errors import APIError
+    from app.retrieval import search_with_neighbors
+
+    try:
+        return json.dumps({"results": search_with_neighbors(query)}, ensure_ascii=False)
+    except (ValueError, OSError, sqlite3.Error) as e:
+        return json.dumps({"error": str(e), "results": []}, ensure_ascii=False)
+    except APIError as e:
+        if e.code == 429:
+            from pydantic_ai.exceptions import ModelHTTPError
+            from app.config import EMBEDDING_MODEL
+            raise ModelHTTPError(429, EMBEDDING_MODEL, api_error_message(429)) from e
         return json.dumps({"error": api_error_message(e.code), "results": []}, ensure_ascii=False)
 
 

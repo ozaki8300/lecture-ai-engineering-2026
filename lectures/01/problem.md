@@ -92,7 +92,7 @@ AIE_MODEL=gemini-3.5-flash uv run python -m app.ask "LoRAとは何ですか？"
 ```
 
 ### 呼び出すモデルについての補足
-モデルの仕様は更新されることがあります。  
+モデルの仕様は更新されることがあります。
 gemini 3.5 flashにおいては、Gemini APIのドキュメントが更新され、非推奨となりgemini 3.6 flashへ転送されるようになりました。
 
 - 参考：Gemini 3.5 Flashのドキュメント

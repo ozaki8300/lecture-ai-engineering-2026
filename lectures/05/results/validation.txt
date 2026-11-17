@@ -1,0 +1,12 @@
+2026-11-17 JST
+uv run pytest -q: 98 passed in 8.66s
+uv run python -m compileall -q app tests: passed
+Conflict markers: none in app/tests; no unmerged files
+git diff --check: passed
+Tool registration: normal/neighbors/tree/graph/full-context covered by tests; MCP verified with stdio TestModel and --mcp --list-tools
+Save approval and denial: existing tests retained; neighbors denial writes no file; 429 stops after one tool invocation
+Official SQLite DB byte comparison: identical
+main/origin-main and origin-lec04: unchanged; backup refs match
+Day1-Day3 answers: unchanged against origin/main
+Result artifacts: no API credential value found
+Git cached whitespace check performed before commit.

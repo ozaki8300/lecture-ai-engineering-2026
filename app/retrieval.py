@@ -94,7 +94,9 @@ def normalized_vector(values: list[float]) -> list[float]:
 
 def embed_text(text: str, task_type: str) -> list[float]:
     """Geminiで文章を埋め込む。入力上限を超えた場合は切り捨てず停止する。"""
-    with genai.Client(api_key=get_api_key()) as client:
+    with genai.Client(api_key=get_api_key(), http_options=types.HttpOptions(
+        retry_options=types.HttpRetryOptions(attempts=1),
+    )) as client:
         count = client.models.count_tokens(model=EMBEDDING_MODEL, contents=text).total_tokens
         if count is None or count > EMBEDDING_MAX_TOKENS:
             raise ValueError(f"埋め込み入力が上限を超えるか計測不能です: {count} tokens。")
@@ -136,6 +138,34 @@ def search(query: str) -> list[dict]:
             FROM chunks ORDER BY distance, page_id LIMIT ?
         """, (sqlite_vec.serialize_float32(vector), RAG_TOP_K))
         return [dict(row) for row in rows]
+
+
+def add_neighbor_pages(hits: list[dict], pages: list[dict]) -> list[dict]:
+    """検索順位を保ち、同じ資料のPDFページ番号±1の本文を重複なく付加する。
+
+    検索ヒットの距離は保持し、追加ページに類似度を割り当てない。
+    欠番を飛び越えず、章の境界では同じ資料内の隣ページを取得する。
+    """
+    by_location = {(page["document_id"], page["page"]): page for page in pages}
+    results = []
+    seen = set()
+    for page in hits:
+        key = (page["document_id"], page["page"])
+        if key not in seen:
+            results.append(dict(page))
+            seen.add(key)
+    for hit in hits:
+        for number in (hit["page"] - 1, hit["page"] + 1):
+            key = (hit["document_id"], number)
+            if key in by_location and key not in seen:
+                results.append(dict(by_location[key]))
+                seen.add(key)
+    return results
+
+
+def search_with_neighbors(query: str) -> list[dict]:
+    """通常のベクトル検索結果に、同じ資料の前後1ページを付加する。"""
+    return add_neighbor_pages(search(query), load_pages(RAG_SOURCE))
 
 
 def search_graph(query: str) -> dict:
