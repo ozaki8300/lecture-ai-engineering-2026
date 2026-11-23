@@ -2,19 +2,39 @@
 
 ## 演習
 
-<!-- [tool call] の行は、表示された行をそのまま貼り付けてください。終わらなかった STEP は、空欄のままでかまいません。 -->
+- 準備：公式の `lec06-start` から `lec06` を作成し、`uv sync --frozen` の成功と `app/mcp_agent.py` の存在を確認した。
+- STEP 1 のツールの名前：直接登録は `search_materials`、MCP は `glossary_search_glossary`。
+- STEP 3 の一覧には `fetch_fetch` が追加された。STEP 4 では AWS Knowledge MCP に接続し、`aws_aws___read_documentation`、`aws_aws___search_documentation`、`aws_aws___list_regions`、`aws_aws___get_regional_availability`、`aws_aws___retrieve_skill` が追加された。
+- STEP 2〜4 の既定モデルによる `--trace` は HTTP 503、代替モデルは HTTP 503 または 504 で終了した。下記は固定引数を渡す FunctionModel と実際の MCP サーバーを使った接続確認のトレース。
 
-- STEP 1 のツールの名前：
-- STEP 2 の [tool call]：
-- STEP 3 の [tool call]：
-- STEP 4 の [tool call]：
-- 気づき・疑問：
+```text
+# STEP 2
+[tool call]   glossary_search_glossary({'query': '3レベル'})
+[tool return] glossary_search_glossary -> [{"term": "宿題の3レベル", "lecture": 1, "definition": "AIE2026の宿題の構成。「基礎（講義内容の確認）」「実装（自分でコードを書く）」「発展（調査や試行）」の3段階があり、どれか1つに取り組…
+# STEP 3
+[tool call]   fetch_fetch({'url': 'https://modelcontextprotocol.io/'})
+[tool return] fetch_fetch -> Contents of https://modelcontextprotocol.io/:
+> ## Documentation Index
+> Fetch the complete documentation index at: http…
+# STEP 4
+[tool call]   aws_aws___search_documentation({'search_phrase': 'Amazon S3 versioning', 'limit': 2})
+[tool return] aws_aws___search_documentation -> {'content': {'result': [{'rank_order': 1, 'title': 'New Feature: Amazon S3 now supports Object Versioning | AWS News Blo…
+```
+
+- 気づき・疑問：直接登録と MCP の両方でツール名、説明文、引数のスキーマがモデルに渡った。MCP では設定名がツール名の先頭に付くため、一覧から接続先を判別できた。
 
 ## 宿題
 
-<!-- 基礎・実装・発展のどれか1つに取り組めば完了です。 -->
+- 取り組んだレベル：実装
+- やったこと：fork の `lec05`（`ca6566e`）にあった `make_quiz` と依存する `random` の import を `app/tools.py` に移植した。既存の `load_glossary` と `json` を使い、`app/mcp_server.py` でツールを公開した。
+- 結果：最終設定でツールは8個になり、一覧に整数引数 `lecture` を持つ `glossary_make_quiz` が追加された。実際の stdio 接続で TestModel から呼び出すと、第2回は用語の問題と正解が JSON で返り、第99回は別の回を指定する案内が返った。全 pytest は 21 件通過した。
 
-- 取り組んだレベル：基礎 / 実装 / 発展
-- やったこと：
-- 結果：
-- 気づき・疑問：
+```text
+[tool call]   glossary_make_quiz({'lecture': 2})
+[tool return] glossary_make_quiz -> {"question": "「教師ありファインチューニング（SFT）」の意味は？", "answer": "入力と望ましい出力のペア（例：質問と模範回答）を使ってモデルを追加学習させる方法。指示に従う振る舞いを身につけさせる代表的な手法。"…
+[tool call]   glossary_make_quiz({'lecture': 99})
+[tool return] glossary_make_quiz -> 第99回の用語は見つかりませんでした。別の回を指定してください。…
+```
+
+- 気づき・疑問：用語がない場合も通常の戻り値にすると、理由と次に指定すべき内容をツールの結果としてモデルに渡せた。
+- 第2回と第99回を尋ねた Gemini の `--trace` はどちらも HTTP 503 で終了した。上記の呼び出しと戻り値は TestModel で確認した。
